@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mission to Mars</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="jumbotron text-center">
+      <h1><b>Mission to Mars</b></h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+    </div>
+    <h2><b>Latest Mars News</b></h2>
+    <h3>{{ scraped_info.content_title }}</h3>
+    <p>{{ scraped_info.teaser }}</p>
+    <br/>
+    </div>
+
+  <div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8">
+            <h2><b>Featured Mars Image</b></h2>
+            <img src="https://data-class-jpl-space.s3.amazonaws.com/JPL_Space/{{ scraped_info.featured_image_url }}" 
+            class="img-responsive"
+            alt="featured_mars_image">
+        </div>
+
+        <div class="col-md-4">
+            <div class="table">
+            <h4><b>Mars Facts</b></h4>
+            {{ scraped_info.mars_facts | safe }}
+            <!-- A lot of browsers will prevent html scripts from being printed because it thinks you are trying to inject malicious 
+            script into the page. 'Safe' is confirming the html script is safe to show on the page -->
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+      <div class="col-md-12">
+        <h2 style="text-align: center;"><b>Mars Hemispheres</b></h2>
+
+        <div class="col-md-6">
+            <div class="thumbnail">
+            <img src="{{ scraped_info.hemispheres.0['img_url'] }}"
+            alt="cerberus">
+            <div class="caption">
+                <h3>{{ scraped_info.hemispheres.0['title'] }}</h3>
+            </div>
+            </div>        
+        </div>
+
+        <div class="col-md-6">
+          <div class="thumbnail">
+          <img src="{{ scraped_info.hemispheres.1['img_url'] }}"
+          alt="cerberus">
+          <div class="caption">
+              <h3>{{ scraped_info.hemispheres.1['title'] }}</h3>
+          </div>
+          </div>        
+      </div>
+
+      <div class="col-md-6">
+        <div class="thumbnail">
+        <img src="{{ scraped_info.hemispheres.2['img_url'] }}"
+        alt="cerberus">
+        <div class="caption">
+            <h3>{{ scraped_info.hemispheres.2['title'] }}</h3>
+        </div>
+        </div>        
+    </div>
+
+    <div class="col-md-6">
+      <div class="thumbnail">
+      <img src="{{ scraped_info.hemispheres.3['img_url'] }}"
+      alt="cerberus">
+      <div class="caption">
+          <h3>{{ scraped_info.hemispheres.3['title'] }}</h3>
+      </div>
+      </div>        
+  </div>
+
+      </div>
+    </div>
+  </div>
+  
+</body>
+
+</html>
